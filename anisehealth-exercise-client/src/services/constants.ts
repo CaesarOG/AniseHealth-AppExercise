@@ -1,1 +1,1 @@
-export const serverURL: string = 'http://localhost:8080';
+export const serverURL: string = 'http://ec2-54-210-138-158.compute-1.amazonaws.com:8080';
