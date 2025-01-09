@@ -15,18 +15,17 @@ import com.anisehealth.exercise.server.models.Client;
 import com.anisehealth.exercise.server.services.ClientService;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class ClientController {
 
 	@Autowired
 	private ClientService clientService;
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/client/all")
 	public List<Client> getAll() {
 		return clientService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@PostMapping("/client/create")
 	public ResponseEntity<Client> postMethodName(@RequestBody Client client) {
 		try { 
@@ -38,7 +37,6 @@ public class ClientController {
 		return new ResponseEntity<>(client, HttpStatus.OK);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@PostMapping("/client/login")
 	public ResponseEntity<Client> login(@RequestBody LoginRequest loginRequest) {
 		Client c = clientService.login(loginRequest.getUsername());

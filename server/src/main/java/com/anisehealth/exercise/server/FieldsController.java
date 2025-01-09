@@ -31,6 +31,7 @@ import com.anisehealth.exercise.server.services.SpecializationService;
 import com.anisehealth.exercise.server.services.StateLocationService;
 import com.anisehealth.exercise.server.services.TreatmentModalityService;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class FieldsController {
 
@@ -70,133 +71,111 @@ public class FieldsController {
 
 
 	//endpoints
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/employmentstatus/all")
 	public List<EmploymentStatus> getAllEmploymentStatus() {
 		return employmentStatusService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/employmentstatus/search")
 	public List<EmploymentStatus> getEmploymentStatusByName(@RequestParam(value = "name") String name) {
 		return employmentStatusService.findByName(name);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/ethnicity/all")
 	public List<Ethnicity> getAllEthnicity() {
 		return ethnicityService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/ethnicity/search")
 	public List<Ethnicity> getEthnicityByName(@RequestParam(value = "name") String name) {
 		return ethnicityService.findByName(name);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/gender/all")
 	public List<Gender> getAllGender() {
 		return genderService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/gender/search")
 	public List<Gender> getGenderByName(@RequestParam(value = "name") String name) {
 		return genderService.findByName(name);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/generation/all")
 	public List<Generation> getAllGeneration() {
 		return generationService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/generation/search")
 	public List<Generation> getGenerationByName(@RequestParam(value = "name") String name) {
 		return generationService.findByName(name);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/language/all")
 	public List<Language> getAllLanguage() {
 		return languageService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/language/search")
 	public List<Language> getLanguageByName(@RequestParam(value = "name") String name) {
 		return languageService.findByName(name);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/relationshipstatus/all")
 	public List<RelationshipStatus> getAllRelationshipStatus() {
 		return relationshipStatusService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/relationshipstatus/search")
 	public List<RelationshipStatus> getRelationshipStatusByName(@RequestParam(value = "name") String name) {
 		return relationshipStatusService.findByName(name);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/religious_bkgrd/all")
 	public List<ReligiousBackground> getAllReligiousBackground() {
 		return religiousBackgroundService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/religious_bkgrd/search")
 	public List<ReligiousBackground> getReligiousBackgroundByName(@RequestParam(value = "name") String name) {
 		return religiousBackgroundService.findByName(name);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/sexualorientation/all")
 	public List<SexualOrientation> getAllSexualOrientation() {
 		return sexualOrientationService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/sexualorientation/search")
 	public List<SexualOrientation> getSexualOrientationByName(@RequestParam(value = "name") String name) {
 		return sexualOrientationService.findByName(name);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/specialization/all")
 	public List<Specialization> getAllSpecialization() {
 		return specializationService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/specialization/search")
 	public List<Specialization> getSpecializationByName(@RequestParam(value = "name") String name) {
 		return specializationService.findByName(name);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/state_location/all")
 	public List<StateLocation> getAllStateLocation() {
 		return stateLocationService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/state_location/search")
 	public List<StateLocation> getStateLocationByName(@RequestParam(value = "name") String name) {
 		return stateLocationService.findByName(name);
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/treatmentmodality/all")
 	public List<TreatmentModality> getAllTreatmentModality() {
 		return treatmentModalityService.findAll();
 	}
 
-	@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
 	@GetMapping("/fields/treatmentmodality/search")
 	public List<TreatmentModality> getTreatmentModalityByName(@RequestParam(value = "name") String name) {
 		return treatmentModalityService.findByName(name);
