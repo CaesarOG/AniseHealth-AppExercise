@@ -1,0 +1,167 @@
+<main class="main">
+<mat-grid-list cols="8" rowHeight="fit">
+    <mat-grid-tile colspan="1"></mat-grid-tile>
+    <mat-grid-tile class="view" colspan="6">
+        <mat-grid-list cols="1" rowHeight="fit">
+            <mat-grid-tile colspan="1" rowspan="5">
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1.5">
+                <mat-grid-list cols="20" rowHeight="fit">
+                    <mat-grid-tile colspan="6"></mat-grid-tile>
+                    <mat-grid-tile colspan="8">
+                        <h1>View Providers</h1>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="3"></mat-grid-tile>
+                    <mat-grid-tile colspan="3">
+                        <button style="padding-top: 2px;" mat-stroked-button (click)="logout()">Logout</button>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1.8" style="padding-top: 30; height: 100%;">
+                <mat-grid-list cols="20" rowHeight="fit">
+                    <mat-grid-tile colspan="4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Search</mat-label>
+                            <input matInput [(ngModel)]="wildCardSearch" disabled={{filteringTrue}} (keyup)="wildCardSearchProviders()" placeholder="Search">
+                        </mat-form-field>
+                        <div style="padding-left: 20px; padding-right: 5px;">
+                            <button disabled={{filteringTrue}} mat-mini-fab aria-label="Clear Search" (click)="clearSearch()">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="16"></mat-grid-tile>
+                </mat-grid-list>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1.8" style="padding-top: 30; height: 100%;">
+                <mat-grid-list cols="40" rowHeight="fit">
+                    <mat-grid-tile colspan="4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Gender</mat-label>
+                            <mat-select [(ngModel)]="gender" (selectionChange)="filterProviders()" matInput>
+                                <mat-option>--</mat-option>
+                                @for (gdr of gendersValues; track gdr) {
+                                    <mat-option [value]="gdr">{{gdr.name}}</mat-option>
+                                  }
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1"></mat-grid-tile>
+                    <mat-grid-tile colspan="4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Religious Bkgd.</mat-label>
+                            <mat-select [(ngModel)]="religiousBackground" (selectionChange)="filterProviders()" matInput>
+                                @for (relBkgd of religiousBackgroundsValues; track relBkgd) {
+                                    <mat-option [value]="relBkgd">{{relBkgd.name}}</mat-option>
+                                  }
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1"></mat-grid-tile>
+                    <mat-grid-tile colspan="7">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Specializations</mat-label>
+                            <mat-select [(ngModel)]="specializations" (selectionChange)="filterProviders()" multiple matInput>
+                                @for (spec of specializationsValues; track spec) {
+                                    <mat-option [value]="spec">{{spec.name}}</mat-option>
+                                  }
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1"></mat-grid-tile>
+                    <mat-grid-tile colspan="4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Sexual Orientation</mat-label>
+                            <mat-select [(ngModel)]="sexualOrientation" (selectionChange)="filterProviders()" matInput>
+                                @for (sexualOrtn of sexualOrientationsValues; track sexualOrtn) {
+                                    <mat-option [value]="sexualOrtn">{{sexualOrtn.name}}</mat-option>
+                                  }
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1"></mat-grid-tile>
+                    <mat-grid-tile colspan="4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>States</mat-label>
+                            <mat-select [(ngModel)]="states" (selectionChange)="filterProviders()" multiple matInput>
+                                @for (st of stateLocationsValues; track st) {
+                                    <mat-option [value]="st">{{st.name}}</mat-option>
+                                  }
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1"></mat-grid-tile>
+                    <mat-grid-tile colspan="4">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Ethnicities</mat-label>
+                            <mat-select [(ngModel)]="ethnicities" (selectionChange)="filterProviders()" multiple matInput>
+                                @for (eth of ethnicitiesValues; track eth) {
+                                    <mat-option [value]="eth">{{eth.name}}</mat-option>
+                                  }
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1"></mat-grid-tile>
+                    <mat-grid-tile colspan="3">
+                        <button mat-stroked-button (click)="clearFilters()">Clear Filters</button>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="4"></mat-grid-tile>
+                </mat-grid-list>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="1" rowspan="25">
+                <div class="mat-elevation-z8" style="width: 100%;">
+                <table mat-table [dataSource]="providers">
+
+                    <ng-container matColumnDef="firstName">
+                      <th mat-header-cell *matHeaderCellDef> First Name </th>
+                      <td mat-cell *matCellDef="let provider"> {{provider.firstName}} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="lastName">
+                      <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                      <td mat-cell *matCellDef="let provider"> {{provider.lastName}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="states">
+                      <th mat-header-cell *matHeaderCellDef> States </th>
+                      <td mat-cell *matCellDef="let provider"> {{ parseArray(provider.states) }} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="specializations">
+                      <th mat-header-cell *matHeaderCellDef> Specializations </th>
+                      <td mat-cell *matCellDef="let provider"> {{ parseArray(provider.specializations) }} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="ethnicities">
+                        <th mat-header-cell *matHeaderCellDef> Ethnicities </th>
+                        <td mat-cell *matCellDef="let provider"> {{ parseArray(provider.ethnicities) }} </td>
+                      </ng-container>
+        
+                    <ng-container matColumnDef="languages">
+                        <th mat-header-cell *matHeaderCellDef> Languages </th>
+                        <td mat-cell *matCellDef="let provider"> {{ parseArray(provider.languages) }} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="gender">
+                        <th mat-header-cell *matHeaderCellDef> Gender </th>
+                        <td mat-cell *matCellDef="let provider"> {{provider.gender.name}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+                    <tr mat-row (click)="clickRow(row)" *matRowDef="let row; columns: displayColumns;"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[20, 10, 30, 40]"
+                showFirstLastButtons
+                aria-label="Select page of periodic elements">
+                </mat-paginator>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+          
+          
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1"></mat-grid-tile>
+</mat-grid-list>
+</main>

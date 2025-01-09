@@ -1,0 +1,45 @@
+<main class="main">
+<mat-grid-list cols="9" rowHeight="fit">
+    <mat-grid-tile colspan="3"></mat-grid-tile>
+    <mat-grid-tile class="view" colspan="3">
+        <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Login to the App</mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+            </mat-card-header>
+            <div style="text-align: center;">
+                <img mat-card-sm-image src="./anise_app_exercise.png" alt="Logo">
+            </div>
+            <mat-card-content>
+                <p>
+                Enter your username and password to login to the app.
+                </p>
+                <form class="example-form">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Username</mat-label>
+                        <input matInput [(ngModel)]="username" [formControl]="usernameFormControl" [errorStateMatcher]="matcher">
+                        @if (usernameFormControl.hasError('required')) {
+                            <mat-error>Username is <strong>required</strong></mat-error>
+                        }
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput [(ngModel)]="password" [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
+                        @if (passwordFormControl.hasError('required')) {
+                            <mat-error>Password is <strong>required</strong></mat-error>
+                        }
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="loginClient()" mat-stroked-button>Login</button>
+                <div style="padding-left: 15px;">
+                    <a mat-stroked-button routerLink="/register">Register</a>
+                </div>
+            </mat-card-actions>
+            </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3"></mat-grid-tile>
+</mat-grid-list>
+</main>

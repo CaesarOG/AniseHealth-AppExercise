@@ -1,0 +1,19 @@
+mat-grid-tile {
+    background: rgb(250, 249, 248);
+    border-left: 1px solid;
+}
+mat-grid-list {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.nav-link {
+    font-size: large;
+}

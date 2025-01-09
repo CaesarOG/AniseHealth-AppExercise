@@ -1,0 +1,35 @@
+<main class="main">
+    <mat-grid-list cols="9" rowHeight="fit">
+        <mat-grid-tile colspan="3"></mat-grid-tile>
+        <mat-grid-tile class="view" colspan="3">
+            <mat-card class="example-card" appearance="outlined">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{provider?.firstName + " " + provider?.lastName}}</mat-card-title>
+                    <mat-card-subtitle></mat-card-subtitle>
+                </mat-card-header>
+                <div style="text-align: center;">
+                    <img mat-card-sm-image src="./anise_app_exercise.png" alt="Logo">
+                </div>
+                <mat-card-content>
+                    <div>
+                        <p><strong>Gender: </strong> {{ provider?.gender?.name }}</p>
+                        <p><strong>States of Practice: </strong> {{ parseArray(provider?.states!) }}</p>
+                        <p><strong>Client Capacity: </strong> {{ provider?.clientCapacity }}</p>
+                        <p><strong>Languages Spoken: </strong> {{ parseArray(provider?.languages!) }}</p>
+                        <p><strong>Specializations: </strong> {{ parseArray(provider?.specializations!) }}</p>
+                        <p><strong>Treatment Modalities: </strong> {{ parseArray(provider?.specializations!) }}</p>
+                        <p><strong>Ethnicities: </strong> {{ parseArray(provider?.ethnicities!) }}</p>
+                        <p><strong>Religious Background: </strong> {{ provider?.religiousBackground?.name }}</p>
+                        <p><strong>Sexual Orientation: </strong> {{ provider?.sexualOrientation?.name }}</p>
+                        <p><strong>Bio: </strong> {{ provider?.bio }}</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <a mat-stroked-button routerLink="">Back</a>
+                </mat-card-actions>
+                </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3"></mat-grid-tile>
+    </mat-grid-list>
+    </main>

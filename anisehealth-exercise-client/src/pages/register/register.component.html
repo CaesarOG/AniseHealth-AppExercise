@@ -1,0 +1,260 @@
+<main class="main">
+    <mat-grid-list cols="9" rowHeight="fit">
+        <mat-grid-tile colspan="3"></mat-grid-tile>
+        <mat-grid-tile class="view" colspan="3" style="overflow-y: scroll;">
+            <mat-card class="example-card" appearance="outlined">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Register as Client for the App</mat-card-title>
+                    <mat-card-subtitle></mat-card-subtitle>
+                </mat-card-header>
+                <div style="text-align: center;">
+                    <img mat-card-sm-image src="./anise_app_exercise.png" alt="Logo">
+                </div>
+                <mat-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="registerGroup">
+                        <mat-card-content>
+                            <p> Enter your username and password to register for the app. </p>
+                            <form class="example-form" [formGroup]="registerGroup">
+                                <ng-template matStepLabel>Fill Username & Password</ng-template>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Username</mat-label>
+                                    <input matInput [(ngModel)]="username" formControlName="usernameCtrl" [errorStateMatcher]="matcher">
+                                    @if (usernameFormControl.hasError('required')) {
+                                        <mat-error>Username is <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- {{username}} -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput [(ngModel)]="password" formControlName="passwordCtrl" [errorStateMatcher]="matcher">
+                                    @if (passwordFormControl.hasError('required')) {
+                                        <mat-error>Password is <strong>required</strong></mat-error>
+                                    }
+                                    @if (passwordFormControl.hasError('minlength')) {
+                                        <mat-error>Password must be at least <strong>8 characters</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- {{password}} -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Re-Enter Password</mat-label>
+                                    <input matInput [(ngModel)]="password2" formControlName="password2Ctrl" [errorStateMatcher]="matcher">
+                                    @if (passwordFormControl2.hasError('required')) {
+                                        <mat-error>Password is <strong>required</strong></mat-error>
+                                    }
+                                    @if (passwordFormControl2.hasError('minlength')) {
+                                        <mat-error>Password must be at least <strong>8 characters</strong></mat-error>
+                                    }
+                                    @else if (passwordFormControl2.hasError('passwordsMismatch')) {
+                                        <mat-error>Password must <strong>match above</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- {{password2}} -->
+                            </form>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <a mat-stroked-button routerLink="/login">Back to Login</a>
+                            <div style="padding-left: 15px;">
+                                <button mat-stroked-button matStepperNext>Continue</button>
+                            </div>
+                        </mat-card-actions>
+                    </mat-step>
+                    <mat-step [stepControl]="secondFormGroup">
+                        <mat-card-content>
+                            <p>
+                                Enter all information below.
+                            </p>
+                            <form class="example-form" [formGroup]="secondFormGroup">
+                                <ng-template matStepLabel>Fill Personal Information</ng-template>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput [(ngModel)]="firstName" formControlName="firstNameCtrl" [errorStateMatcher]="matcher2">
+                                    @if (firstNameFormControl.hasError('required')) {
+                                        <mat-error>First Name is <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- {{firstName}} -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput [(ngModel)]="lastName" formControlName="lastNameCtrl" [errorStateMatcher]="matcher2">
+                                    @if (lastNameFormControl.hasError('required')) {
+                                        <mat-error>Last Name is <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- {{lastName}} -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Email</mat-label>
+                                    <input type="email" matInput [(ngModel)]="email" formControlName="emailCtrl" [errorStateMatcher]="matcher2">
+                                    @if (emailFormControl.hasError('required')) {
+                                        <mat-error>Email is <strong>required</strong></mat-error>
+                                    }
+                                    @if (emailFormControl.hasError('email')) {
+                                        <mat-error>Email entered is <strong>invalid</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- {{email}} -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Phone Number</mat-label>
+                                    <input type="tel" matInput [(ngModel)]="phone" formControlName="phoneCtrl" [errorStateMatcher]="matcher2">
+                                    @if (phoneFormControl.hasError('required')) {
+                                        <mat-error>Phone Number is <strong>required</strong></mat-error>
+                                    }
+                                    @if (phoneFormControl.hasError('pattern')) {
+                                        <mat-error>Phone Number is <strong>invalid (10 digits)</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- {{phone}} -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>State located</mat-label>
+                                    <mat-select [(ngModel)]="state" matInput formControlName="stateCtrl" [errorStateMatcher]="matcher2">
+                                        <mat-option>--</mat-option>
+                                        @for (st of stateLocationsValues; track st) {
+                                            <mat-option [value]="st">{{st.name}}</mat-option>
+                                          }
+                                    </mat-select>
+                                    @if (stateFormControl.hasError('required')) {
+                                        <mat-error>State of location is <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- <p>{{state}}</p> -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Date of Birth</mat-label>
+                                    <input matInput [matDatepicker]="picker" [(ngModel)]="dob" formControlName="dobCtrl" [errorStateMatcher]="matcher2">
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                <!-- <p>{{dob}}</p> -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Gender Identity</mat-label>
+                                    <mat-select [(ngModel)]="gender" matInput formControlName="genderCtrl" [errorStateMatcher]="matcher2">
+                                        <mat-option>--</mat-option>
+                                        @for (gdr of gendersValues; track gdr) {
+                                            <mat-option [value]="gdr">{{gdr.name}}</mat-option>
+                                          }
+                                    </mat-select>
+                                    @if (stateFormControl.hasError('required')) {
+                                        <mat-error>Gender Identity is <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- <p>{{gender}}</p> -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Sexual Orientation</mat-label>
+                                    <mat-select [(ngModel)]="sexualOrientation" matInput formControlName="sexualOrientationCtrl" [errorStateMatcher]="matcher2">
+                                        <mat-option>--</mat-option>
+                                        @for (sexualOrtn of sexualOrientationsValues; track sexualOrtn) {
+                                            <mat-option [value]="sexualOrtn">{{sexualOrtn.name}}</mat-option>
+                                          }
+                                    </mat-select>
+                                    @if (sexualOrientationFormControl.hasError('required')) {
+                                        <mat-error>Sexual Orientation is <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- <p>{{sexualOrientation}}</p> -->
+                            </form>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button mat-stroked-button matStepperPrevious>Go Back</button>
+                            <div style="padding-left: 15px;">
+                                <button mat-stroked-button matStepperNext>Continue</button>
+                            </div>
+                        </mat-card-actions>
+                    </mat-step>
+                    <mat-step [stepControl]="thirdFormGroup">
+                        <mat-card-content>
+                            <p>
+                                Enter final set of information.
+                            </p>
+                            <form class="example-form" [formGroup]="thirdFormGroup">
+                                <ng-template matStepLabel>Some More Information</ng-template>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Ethnicities (multiple if needed)</mat-label>
+                                    <mat-select [(ngModel)]="ethnicities" matInput multiple formControlName="ethnicityCtrl" [errorStateMatcher]="matcher2">
+                                        @for (eth of ethnicitiesValues; track eth) {
+                                            <mat-option [value]="eth">{{eth.name}}</mat-option>
+                                          }
+                                    </mat-select>
+                                    @if (ethnicityFormControl.hasError('required')) {
+                                        <mat-error>Ethnicities are <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- <p>{{ethnicities}}</p> -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Select Generation</mat-label>
+                                    <mat-select [(ngModel)]="generation" matInput formControlName="generationCtrl" [errorStateMatcher]="matcher2">
+                                        <mat-option>--</mat-option>
+                                        @for (gen of generationsValues; track gen) {
+                                            <mat-option [value]="gen">{{parseGen(gen)}}</mat-option>
+                                          }
+                                    </mat-select>
+                                    @if (generationFormControl.hasError('required')) {
+                                        <mat-error>Generation is <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- <p>{{generation}}</p> -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Relationship Status</mat-label>
+                                    <mat-select [(ngModel)]="relationshipStatus" matInput formControlName="relationshipStatusCtrl" [errorStateMatcher]="matcher2">
+                                        <mat-option>--</mat-option>
+                                        @for (relStat of relationshipStatusesValues; track relStat) {
+                                            <mat-option [value]="relStat">{{relStat.name}}</mat-option>
+                                          }
+                                    </mat-select>
+                                    @if (relationshipStatusFormControl.hasError('required')) {
+                                        <mat-error>Relationship Status is <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- <p>{{relationshipStatus}}</p> -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Employment Status</mat-label>
+                                    <mat-select [(ngModel)]="employmentStatus" matInput formControlName="employmentStatusCtrl" [errorStateMatcher]="matcher2">
+                                        <mat-option>--</mat-option>
+                                        @for (empStat of employmentStatusesValues; track empStat) {
+                                            <mat-option [value]="empStat">{{empStat.name}}</mat-option>
+                                          }
+                                    </mat-select>
+                                    @if (employmentStatusFormControl.hasError('required')) {
+                                        <mat-error>Employment Status is <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- <p>{{employmentStatus}}</p> -->
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Religious Background</mat-label>
+                                    <mat-select [(ngModel)]="religiousBackground" matInput formControlName="religiousBackgroundCtrl" [errorStateMatcher]="matcher2">
+                                        <mat-option>--</mat-option>
+                                        @for (religBkg of religiousBackgroundsValues; track religBkg) {
+                                            <mat-option [value]="religBkg">{{religBkg.name}}</mat-option>
+                                          }
+                                    </mat-select>
+                                    @if (religiousBackgroundFormControl.hasError('required')) {
+                                        <mat-error>Religious Background is <strong>required</strong></mat-error>
+                                    }
+                                </mat-form-field>
+                                <!-- <p>{{religiousBackground}}</p> -->
+                            </form>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button mat-stroked-button matStepperPrevious>Go Back</button>
+                            <div style="padding-left: 15px;">
+                                <button (click)="registerClient()" mat-stroked-button>Done</button>
+                            </div>
+                        </mat-card-actions>
+                    </mat-step>
+                </mat-stepper>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3"></mat-grid-tile>
+    </mat-grid-list>
+    </main>
